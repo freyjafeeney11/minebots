@@ -1,5 +1,6 @@
 from cmath import pi
 import pybullet as p
+import random as random
 import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
@@ -13,6 +14,7 @@ planeId = p.loadURDF("plane.urdf")
 p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 frontLegSensorValues = numpy.zeros(100)
+targetVec = numpy.zeros(100)
 backLegSensorValues = numpy.zeros(100)
 for i in range(100):
     p.stepSimulation()
@@ -20,16 +22,17 @@ for i in range(100):
     bodyIndex = robotId,
     jointName = b'Torso_BackLeg',
     controlMode = p.POSITION_CONTROL,
-    targetPosition = -pi/4.0,
-    maxForce = 500
+    targetPosition = random.uniform(-pi/2.0, pi/2.0),
+    maxForce = 40
     )
     pyrosim.Set_Motor_For_Joint(
     bodyIndex = robotId,
     jointName = b'Torso_FrontLeg',
     controlMode = p.POSITION_CONTROL,
-    targetPosition = +pi/4.0,
-    maxForce = 500
+    targetPosition = random.uniform(-pi/2.0, pi/2.0),
+    maxForce = 40
     )
+    targetVec = numpy.sin((numpy.linspace(0, 2*numpy.pi, 1000)))
     backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
     frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
     time.sleep(1/10)
@@ -37,4 +40,5 @@ p.disconnect()
 print(frontLegSensorValues)
 print(backLegSensorValues)
 numpy.save("data/data.npy", backLegSensorValues, allow_pickle=True, fix_imports=True)
+numpy.save("data/data3.npy", targetVec, allow_pickle=True, fix_imports=True)
 numpy.save("data/data2.npy", frontLegSensorValues, allow_pickle=True, fix_imports=True)
