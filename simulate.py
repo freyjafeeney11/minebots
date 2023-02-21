@@ -12,7 +12,7 @@ from robot import ROBOT
 
 
 simulation = SIMULATION()
-simulation.run()
+simulation.Run()
 world = WORLD()
 robot = ROBOT()
 
