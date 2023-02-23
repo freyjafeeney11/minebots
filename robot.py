@@ -12,10 +12,7 @@ import constants as c
 
 class ROBOT:
     def __init__(self):
-        self.robotId = p.loadURDF("body.urdf")
-        pyrosim.Prepare_To_Simulate(self.robotId)   
-        self.Prepare_To_Sense();
-        self.motors= {} 
+        self.robotId = p.loadURDF("body.urdf");
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -23,7 +20,16 @@ class ROBOT:
             self.sensors[linkName] = SENSOR(linkName)
 
     def Sense(self, t):
-        i = 0
         # backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-        for i in (self.sensors):
-            self.sensors[i].Get_Value(t)
+        for sensor in self.sensors.values():
+            sensor.Get_Value(t)
+
+    def Prepare_To_Act(self):
+        self.motors= {} 
+        for jointName in pyrosim.jointNamesToIndices:
+            self.motors[jointName] = MOTOR(jointName)
+
+    def Act(self, time):
+        if self.motors is not None:
+            for motor in self.motors.values():
+                motor.Set_Value(time, self.robotId)

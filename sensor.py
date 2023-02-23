@@ -8,13 +8,13 @@ import numpy as numpy
 import constants as c
 
 class SENSOR:
-    def __init__(self, linkname):
-        self.linkName = linkname
+    def __init__(self, linkName):
+        self.linkName = linkName
         #moved frontlegsensors into sensor constructor. was this right?
-        self.values = numpy.zeros(c.size)
+        self.values = numpy.zeros(1000)
 
     def Get_Value(self, time):
         #step 63
         self.values[time] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
-        if time == 999:
+        if time == c.size-1:
             print(self.values)

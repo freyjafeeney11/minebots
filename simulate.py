@@ -10,11 +10,8 @@ from simulation import SIMULATION
 from world import WORLD
 from robot import ROBOT
 
-
 simulation = SIMULATION()
 simulation.Run()
-world = WORLD()
-robot = ROBOT()
 
 # physicsClient = p.connect(p.GUI)
 # p.setAdditionalSearchPath(pybullet_data.getDataPath())
