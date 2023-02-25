@@ -13,9 +13,16 @@ class MOTOR:
         self.Prepare_To_Act()
     
     def Prepare_To_Act(self):
-        self.amplitude = pi/2
-        self.frequency = 10
-        self.phaseOffset = pi/9
+        if self.jointName == b'Torso_BackLeg':
+            print("Back Leg working")
+            self.amplitude = pi/4
+            self.frequency = 50
+            self.phaseOffset = pi/6
+        if self.jointName == b'Torso_FrontLeg':
+            print("Front Leg working")
+            self.amplitude = pi/4
+            self.frequency = 25
+            self.phaseOffset = pi/6
         self.motorValues = (self.amplitude * numpy.sin((self.frequency * (numpy.linspace(0, 2*numpy.pi, 1000)) + self.phaseOffset)))
     
     def Set_Value(self, time, robot):
@@ -24,5 +31,7 @@ class MOTOR:
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
         targetPosition = self.motorValues[time], #random.uniform(-pi/4.0, pi/4.0),
-        maxForce = 500
+        maxForce = 30
         )
+    def Save_Values(self):
+        numpy.save("data/data2.npy", self.motorValues, allow_pickle=True, fix_imports=True)
