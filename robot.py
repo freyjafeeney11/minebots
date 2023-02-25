@@ -9,10 +9,12 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy as numpy
 import constants as c
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
     def __init__(self):
         self.robotId = p.loadURDF("body.urdf");
+        self.nn = NEURAL_NETWORK("brain.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -23,6 +25,8 @@ class ROBOT:
         # backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
         for sensor in self.sensors.values():
             sensor.Get_Value(t)
+    def Think(self):
+        self.nn.Print()
 
     def Prepare_To_Act(self):
         self.motors= {} 
