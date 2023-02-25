@@ -26,6 +26,7 @@ class ROBOT:
         for sensor in self.sensors.values():
             sensor.Get_Value(t)
     def Think(self):
+        self.nn.Update()
         self.nn.Print()
 
     def Prepare_To_Act(self):

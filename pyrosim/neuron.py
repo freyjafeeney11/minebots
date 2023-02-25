@@ -6,6 +6,7 @@ import pyrosim.pyrosim as pyrosim
 
 import pyrosim.constants as c
 
+
 class NEURON: 
 
     def __init__(self,line):
@@ -65,6 +66,9 @@ class NEURON:
     def Set_Value(self,value):
 
         self.value = value
+
+    def Update_Sensor_Neuron(self):
+        self.Set_Value(self.value, 0)
 
 # -------------------------- Private methods -------------------------
 
