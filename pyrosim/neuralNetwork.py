@@ -46,8 +46,7 @@ class NEURAL_NETWORK:
         else:
             return False
     def Get_Motor_Neurons_Joint(self, neuronName):
-        self.neuron2 = self.neurons[neuronName]
-        return NEURON.Get_Joint_Name(self.neuron2)
+        return NEURON.Get_Joint_Name(self.neurons[neuronName])
     def Get_Value_Of(self, neuronName):
         self.neuron = self.neurons[neuronName]
         return NEURON.Get_Value(self.neuron)

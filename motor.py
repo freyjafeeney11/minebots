@@ -13,6 +13,7 @@ class MOTOR:
         self.Prepare_To_Act()
     
     def Prepare_To_Act(self):
+        #can only be found when b'' is there?
         if self.jointName == b'Torso_BackLeg':
             self.amplitude = pi/4
             self.frequency = 50
@@ -28,7 +29,7 @@ class MOTOR:
         bodyIndex = robot,
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
-        targetPosition = self.motorValues[desiredAngle], #random.uniform(-pi/4.0, pi/4.0),
+        targetPosition = self.motorValues[int(desiredAngle)], #random.uniform(-pi/4.0, pi/4.0),
         maxForce = 30
         )
     def Save_Values(self):
