@@ -34,7 +34,10 @@ class ROBOT:
         for jointName in pyrosim.jointNamesToIndices:
             self.motors[jointName] = MOTOR(jointName)
 
-    def Act(self, time):
-        if self.motors is not None:
-            for motor in self.motors.values():
-                motor.Set_Value(time, self.robotId)
+    def Act(self):
+        for neuronName in self.nn.Get_Neuron_Names():
+            if self.nn.Is_Motor_Neuron(neuronName):
+                self.jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
+                self.desiredAngle = self.nn.Get_Value_Of(neuronName)
+                #step 76, should i keep for loop
+                print(neuronName, self.jointName, self.desiredAngle)

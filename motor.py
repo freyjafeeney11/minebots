@@ -14,23 +14,21 @@ class MOTOR:
     
     def Prepare_To_Act(self):
         if self.jointName == b'Torso_BackLeg':
-            print("Back Leg working")
             self.amplitude = pi/4
             self.frequency = 50
             self.phaseOffset = pi/6
         if self.jointName == b'Torso_FrontLeg':
-            print("Front Leg working")
             self.amplitude = pi/4
             self.frequency = 25
             self.phaseOffset = pi/6
         self.motorValues = (self.amplitude * numpy.sin((self.frequency * (numpy.linspace(0, 2*numpy.pi, 1000)) + self.phaseOffset)))
     
-    def Set_Value(self, time, robot):
+    def Set_Value(self, desiredAngle, robot):
         pyrosim.Set_Motor_For_Joint(
         bodyIndex = robot,
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
-        targetPosition = self.motorValues[time], #random.uniform(-pi/4.0, pi/4.0),
+        targetPosition = self.motorValues[desiredAngle], #random.uniform(-pi/4.0, pi/4.0),
         maxForce = 30
         )
     def Save_Values(self):
