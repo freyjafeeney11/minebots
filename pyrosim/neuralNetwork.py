@@ -48,8 +48,7 @@ class NEURAL_NETWORK:
     def Get_Motor_Neurons_Joint(self, neuronName):
         return NEURON.Get_Joint_Name(self.neurons[neuronName])
     def Get_Value_Of(self, neuronName):
-        self.neuron = self.neurons[neuronName]
-        return NEURON.Get_Value(self.neuron)
+        return NEURON.Get_Value(self.neurons[neuronName])
 
 # ---------------- Private methods --------------------------------------
 

@@ -29,7 +29,7 @@ class MOTOR:
         bodyIndex = robot,
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
-        targetPosition = self.motorValues[int(desiredAngle)], #random.uniform(-pi/4.0, pi/4.0),
+        targetPosition = desiredAngle, #random.uniform(-pi/4.0, pi/4.0),
         maxForce = 30
         )
     def Save_Values(self):

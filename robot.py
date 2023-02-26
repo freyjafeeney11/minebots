@@ -38,7 +38,7 @@ class ROBOT:
         for neuronName in self.nn.Get_Neuron_Names():
             if self.nn.Is_Motor_Neuron(neuronName):
                 self.jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-                self.desiredAngle = int(self.nn.Get_Value_Of(neuronName))
+                self.desiredAngle = self.nn.Get_Value_Of(neuronName)
                 #step 76, this is causing the problem, it cant find the index?
                 #cant use b'' email ta?
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
