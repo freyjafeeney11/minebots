@@ -71,17 +71,26 @@ class NEURON:
 
     def Update_Sensor_Neuron(self):
         self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
+
+    def Allow_Presynaptic_Neuron_To_Influence_Me(self,  key,  name):
+        self.key = key
+        self.name = name
+        print(self.key)
+        print(self.name)
+        exit();
     
     #youre on step 25, figure out how to get right values from tuples and dict
     def Update_Hidden_Or_Motor_Neuron(self, neurons, synapses):
         self.Set_Value(pi/4.0)
-        print("getname is:", self.Get_Name());
         for key in synapses.items():
             #to do so, you will need the second element in the tuple (the name of that synapse's postsynaptic neuron), the name of the currently-updating neuron (which is self.GetName()), and a test of whether these are equal.
             if self.Get_Name() == key[0][1]:
-                #print pre and post synaptic neurons, how to index through it?
-                print("pre:", key[0][0]);
-                print("post:", key[0][1]);
+                print("thiskey[0][0]:", key[0][0])
+                self.Allow_Presynaptic_Neuron_To_Influence_Me(key[1].Get_Weight(), neurons[(key[0][0])].Get_Value())
+
+    
+
+
                 
 
 # -------------------------- Private methods -------------------------
