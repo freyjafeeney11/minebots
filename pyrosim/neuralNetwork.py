@@ -35,7 +35,8 @@ class NEURAL_NETWORK:
             if self.neurons[key.Get_Name()].Is_Sensor_Neuron():
                 self.neurons[key.Get_Name()].Update_Sensor_Neuron()
             else:
-                self.neurons[key.Get_Name()].Update_Hidden_Or_Motor_Neuron()
+                self.neurons[key.Get_Name()].Update_Hidden_Or_Motor_Neuron(self.neurons, self.synapses)
+        exit();
     def Get_Neuron_Names(self):
         return self.neurons.keys()
     #step 61
