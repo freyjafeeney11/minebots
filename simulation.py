@@ -10,9 +10,11 @@ import numpy as numpy
 import constants as c
 
 class SIMULATION:
-    def __init__(self):  
-        #Cut the statements from simulate.py that connect to pybullet, set the additional search path, set gravity, and Prepare_To_Simulate()
-        self.physicsClient = p.connect(p.GUI)
+    def __init__(self, directOrGUI):  
+        if directOrGUI == "DIRECT":
+            self.physicsClient = p.connect(p.DIRECT)
+        else:
+            self.physicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
         self.robot = ROBOT() 
@@ -29,7 +31,7 @@ class SIMULATION:
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act()
-            time.sleep(1/800)
+            #time.sleep(1/800)
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()

@@ -22,4 +22,4 @@ timeSleep = 1/240;
 gravity = -9.8;
 
 
-numberOfGenerations = 2
+numberOfGenerations = 15

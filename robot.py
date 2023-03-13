@@ -27,7 +27,7 @@ class ROBOT:
             sensor.Get_Value(t)
     def Think(self):
         self.nn.Update()
-        self.nn.Print()
+        #self.nn.Print()
 
     def Prepare_To_Act(self):
         self.motors= {} 
@@ -42,7 +42,7 @@ class ROBOT:
                 #step 76, this is causing the problem, it cant find the index?
                 #cant use b'' email ta?
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
-                print(neuronName, self.jointName, self.desiredAngle)
+                #print(neuronName, self.jointName, self.desiredAngle)
 
     def Get_Fitness(self):
         self.stateOfLinkZero = p.getLinkState(self.robotId,0)

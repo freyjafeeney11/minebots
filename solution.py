@@ -8,9 +8,9 @@ class SOLUTION:
                                 [np.random.rand(), np.random.rand()], 
                                 [np.random.rand(), np.random.rand()]])
         self.weights = self.weights * 2 - 1
-    def Evaluate(self):
+    def Evaluate(self, choice):
         self.Create_Brain()
-        os.system("python3 simulate.py")
+        os.system("python3 simulate.py " + str(choice))
         f = open("fitness.txt", "r")
         self.fitness = float(f.readline())
         print(self.fitness)
