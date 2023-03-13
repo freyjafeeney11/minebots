@@ -11,6 +11,10 @@ class SOLUTION:
     def Evaluate(self):
         self.Create_Brain()
         os.system("python3 simulate.py")
+        f = open("fitness.txt", "r")
+        self.fitness = float(f.readline())
+        print(self.fitness)
+        f.close()
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
         length = 1

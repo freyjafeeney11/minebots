@@ -43,3 +43,15 @@ class ROBOT:
                 #cant use b'' email ta?
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
                 print(neuronName, self.jointName, self.desiredAngle)
+
+    def Get_Fitness(self):
+        self.stateOfLinkZero = p.getLinkState(self.robotId,0)
+        self.positionOfLinkZero = self.stateOfLinkZero[0]
+        self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
+
+        #write coor to file
+        f = open("fitness.txt", "w")
+        f.write(str(self.xCoordinateOfLinkZero))
+        f.close()
+
+        exit()

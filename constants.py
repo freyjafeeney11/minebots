@@ -20,3 +20,6 @@ timeSleep = 1/240;
 
 #gravity
 gravity = -9.8;
+
+
+numberOfGenerations = 2
