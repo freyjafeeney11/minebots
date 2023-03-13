@@ -45,3 +45,8 @@ class SOLUTION:
             for currentColumn in range(0, 2):
                 pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = (currentColumn+3) , weight = self.weights[currentRow][currentColumn])
         pyrosim.End()
+    
+    def Mutate(self):
+        #step60 - i dont know if this is chosing the column correctly
+        self.weights[random.randint(0,2)]
+        self.weights[random.randint(0,2),random.randint(0,1)] =  random.random() * 2 - 1
