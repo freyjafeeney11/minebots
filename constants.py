@@ -21,5 +21,6 @@ timeSleep = 1/240;
 #gravity
 gravity = -9.8;
 
+populationSize = 2
 
 numberOfGenerations = 15
