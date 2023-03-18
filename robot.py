@@ -17,7 +17,6 @@ class ROBOT:
         self.robotId = p.loadURDF("body.urdf");
         self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
         s = "rm brain" + str(solutionID) + ".nndf"
-        print("PRINTING HERE! " + s)
         os.system(s)
 
     def Prepare_To_Sense(self):
@@ -48,13 +47,15 @@ class ROBOT:
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
                 #print(neuronName, self.jointName, self.desiredAngle)
 
-    def Get_Fitness(self):
+    def Get_Fitness(self, solutionID):
+        self.ID = solutionID
         self.stateOfLinkZero = p.getLinkState(self.robotId,0)
         self.positionOfLinkZero = self.stateOfLinkZero[0]
         self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
 
         #write coor to file
-        f = open("fitness.txt", "w")
+        f = open("tmp" + self.ID + ".txt", "w")
+        os.system("mv tmpID.txt fitnessID.tx")
         f.write(str(self.xCoordinateOfLinkZero))
         f.close()
 

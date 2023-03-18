@@ -1,4 +1,5 @@
 import numpy as np
+import time
 import os
 import random as random
 import pyrosim.pyrosim as pyrosim
@@ -9,14 +10,26 @@ class SOLUTION:
                                 [np.random.rand(), np.random.rand()], 
                                 [np.random.rand(), np.random.rand()]])
         self.weights = self.weights * 2 - 1
-    def Evaluate(self, directOrGUI):
+
+
+    #split into two fuctions evaluate
+    def Start_Simulation(self, directOrGUI):
         self.Create_Brain()
         s = " " + str(self.myID) + " "
         os.system("python3 simulate.py " + directOrGUI + s + "&")
-        f = open("fitness.txt", "r")
+
+    def Wait_For_Simulation_To_End(self):
+        fitnessFileName = "fitness" + str(self.myID) + ".txt"
+
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
+
+        f = open("fitness" + str(self.myID) + ".txt", "r")
         self.fitness = float(f.readline())
         print(self.fitness)
         f.close()
+        os.system("del fitness" + str(self.myID) + ".txt")
+
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
         length = 1

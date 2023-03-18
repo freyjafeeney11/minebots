@@ -10,8 +10,9 @@ import numpy as numpy
 import constants as c
 
 class SIMULATION:
-    def __init__(self, directOrGUI, solutionID):  
-        self.directOrGUI = directOrGUI;
+    def __init__(self, directOrGUI, solutionID):
+        self.solutionID =  solutionID
+        self.directOrGUI = directOrGUI
         if directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         else:
@@ -32,11 +33,11 @@ class SIMULATION:
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act()
-            if self.directOrGUI == "GUI":
-                time.sleep(1/800)
+            #if self.directOrGUI == "GUI":
+            #    time.sleep(1/800)
 
     def Get_Fitness(self):
-        self.robot.Get_Fitness()
+        self.robot.Get_Fitness(self.solutionID)
 
     def __del__(self):
         p.disconnect()
