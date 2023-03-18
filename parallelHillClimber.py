@@ -5,14 +5,16 @@ import copy
 
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
+        self.nextAvailableID = 0
         self.parents = {}
         for i in range(c.populationSize):
-            self.parents[i] = SOLUTION()
+            self.parents[i] = SOLUTION(self.nextAvailableID)
+            self.nextAvailableID = self.nextAvailableID + 1
 
 
     def Evolve(self):
         for i in range(c.populationSize):
-            self.parent[i].Evaluate("GUI")
+            self.parents[i].Evaluate("GUI")
             # for currentGeneration in range(c.numberOfGenerations):
             #     self.Evolve_For_One_Generation()
     
@@ -23,8 +25,11 @@ class PARALLEL_HILL_CLIMBER:
         self.Select()
         self.Print()
     
-    def Spawn(self):
+    def Spawn(self, nextAvailableID):
+        #step33 .. not sure if i did this right
+        self.child.Set_ID(nextAvailableID) 
         self.child = copy.deepcopy(self.parent)
+        self.nextAvailableID = self.nextAvailableID + 1
 
     def Mutate(self):
         self.child.Mutate()
