@@ -10,7 +10,7 @@ import numpy as numpy
 import constants as c
 
 class SIMULATION:
-    def __init__(self, directOrGUI):  
+    def __init__(self, directOrGUI, solutionID):  
         self.directOrGUI = directOrGUI;
         if directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
@@ -18,7 +18,7 @@ class SIMULATION:
             self.physicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
-        self.robot = ROBOT() 
+        self.robot = ROBOT(solutionID) 
         self.world = WORLD()  
         pyrosim.Prepare_To_Simulate(self.robot.robotId)   
         self.robot.Prepare_To_Sense()

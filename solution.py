@@ -11,7 +11,8 @@ class SOLUTION:
         self.weights = self.weights * 2 - 1
     def Evaluate(self, directOrGUI):
         self.Create_Brain()
-        os.system("python3 simulate.py " + directOrGUI + " &")
+        s = " " + str(self.myID) + " "
+        os.system("python3 simulate.py " + directOrGUI + s + "&")
         f = open("fitness.txt", "r")
         self.fitness = float(f.readline())
         print(self.fitness)
