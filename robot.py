@@ -14,6 +14,7 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
     def __init__(self, solutionID):
+        self.solutionID = solutionID
         self.robotId = p.loadURDF("body.urdf");
         self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
         s = "rm brain" + str(solutionID) + ".nndf"
@@ -47,16 +48,13 @@ class ROBOT:
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
                 #print(neuronName, self.jointName, self.desiredAngle)
 
-    def Get_Fitness(self, solutionID):
-        self.ID = solutionID
+    def Get_Fitness(self):
         self.stateOfLinkZero = p.getLinkState(self.robotId,0)
         self.positionOfLinkZero = self.stateOfLinkZero[0]
         self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
 
         #write coor to file
-        f = open("tmp" + self.ID + ".txt", "w")
-        os.system("mv tmpID.txt fitnessID.tx")
+        f = open("tmp" + str(self.solutionID) + ".txt", "w")
         f.write(str(self.xCoordinateOfLinkZero))
         f.close()
-
-        exit()
+        os.system("mv tmp" + str(self.solutionID) + ".txt fitness" + str(self.solutionID) + ".txt")

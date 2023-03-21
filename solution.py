@@ -3,6 +3,7 @@ import time
 import os
 import random as random
 import pyrosim.pyrosim as pyrosim
+
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
@@ -14,21 +15,25 @@ class SOLUTION:
 
     #split into two fuctions evaluate
     def Start_Simulation(self, directOrGUI):
+        self.Create_World()
+        self.Create_Body()
         self.Create_Brain()
         s = " " + str(self.myID) + " "
         os.system("python3 simulate.py " + directOrGUI + s + "&")
 
     def Wait_For_Simulation_To_End(self):
         fitnessFileName = "fitness" + str(self.myID) + ".txt"
-
+        
         while not os.path.exists(fitnessFileName):
             time.sleep(0.01)
 
-        f = open("fitness" + str(self.myID) + ".txt", "r")
+        f = open(fitnessFileName, "r")
+        #if os.path.getsize(fitnessFileName) != 0: 
         self.fitness = float(f.readline())
         print(self.fitness)
         f.close()
-        os.system("del fitness" + str(self.myID) + ".txt")
+
+        os.system("rm " + str(fitnessFileName))
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
@@ -40,6 +45,7 @@ class SOLUTION:
         z=0.5
         pyrosim.Send_Cube(name="Demo", pos=[x,y,z] , size=[length,width,height])
         pyrosim.End()
+
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1.5] , size=[1,1,1])
@@ -68,4 +74,5 @@ class SOLUTION:
     
     def Set_ID(self, nextAvailableID):
         self.myID = nextAvailableID
+
         
