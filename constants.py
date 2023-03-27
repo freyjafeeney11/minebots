@@ -25,6 +25,6 @@ populationSize = 1
 
 numberOfGenerations = 1
 
-numSensorNeurons = 5
+numSensorNeurons = 9
 
-numMotorNeurons = 4
+numMotorNeurons = 8
