@@ -70,5 +70,5 @@ class PARALLEL_HILL_CLIMBER:
     def Evaluate(self, solutions):
         for i in range(0, c.populationSize):
             solutions[i].Start_Simulation("DIRECT")
-        for x in range(0, c.populationSize):
-            solutions[x].Wait_For_Simulation_To_End()
+        for i in range(0, c.populationSize):
+            solutions[i].Wait_For_Simulation_To_End()

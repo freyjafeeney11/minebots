@@ -22,7 +22,7 @@ class MOTOR:
             self.amplitude = pi/4
             self.frequency = 25
             self.phaseOffset = pi/6
-        self.motorValues = (self.amplitude * numpy.sin((self.frequency * (numpy.linspace(0, 2*numpy.pi, 1000)) + self.phaseOffset)))
+        self.motorValues = (c.amplitude * numpy.sin((c.frequency * (numpy.linspace(0, 2*numpy.pi, 1000)) + c.phaseOffset)))
     
     def Set_Value(self, desiredAngle, robot):
         pyrosim.Set_Motor_For_Joint(

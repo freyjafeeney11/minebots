@@ -1,9 +1,9 @@
 from cmath import pi
 
 #robot constants
-b_amplitude = pi/2
-b_frequency = 10
-b_phaseOffset = pi/9
+amplitude = pi/2
+frequency = 10
+phaseOffset = pi/9
 
 f_amplitude = pi/6
 f_frequency = 10
@@ -25,6 +25,6 @@ populationSize = 1
 
 numberOfGenerations = 1
 
-numSensorNeurons = 3
+numSensorNeurons = 5
 
-numMotorNeurons = 2
+numMotorNeurons = 4

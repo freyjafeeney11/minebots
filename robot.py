@@ -49,6 +49,7 @@ class ROBOT:
                 #print(neuronName, self.jointName, self.desiredAngle)
 
     def Get_Fitness(self):
+        #print("here now")
         self.stateOfLinkZero = p.getLinkState(self.robotId,0)
         self.positionOfLinkZero = self.stateOfLinkZero[0]
         self.xCoordinateOfLinkZero = self.positionOfLinkZero[0]
