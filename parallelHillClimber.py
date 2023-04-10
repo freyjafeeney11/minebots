@@ -47,7 +47,8 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for i in range(c.populationSize):
-            if ((self.children[i].fitness) < (self.parents[i].fitness)):
+            #changed < for jump proj
+            if ((self.children[i].fitness) > (self.parents[i].fitness)):
                 self.parents[i] = self.children[i]
 
     def Print(self):
@@ -57,9 +58,10 @@ class PARALLEL_HILL_CLIMBER:
             print("  \n")
 
     def Show_Best(self):
-        minval = 100;
+        #changed here too
+        minval = -1000;
         for i in self.parents.keys():
-            if self.parents[i].fitness < minval:
+            if self.parents[i].fitness > minval:
                 minval = self.parents[i].fitness
 
         for i in self.parents.keys():

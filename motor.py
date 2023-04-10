@@ -30,7 +30,7 @@ class MOTOR:
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
         targetPosition = desiredAngle, #random.uniform(-pi/4.0, pi/4.0),
-        maxForce = 30
+        maxForce = c.maxForce
         )
     def Save_Values(self):
         numpy.save("data/data2.npy", self.motorValues, allow_pickle=True, fix_imports=True)
