@@ -67,12 +67,14 @@ class SIMULATION:
             direction = [-v[i]/mag for i in range(3)]
             direction = numpy.array(direction)
 
-            self.force = -0.5*(1.293*0.5*1.5*mag**2)
+            self.force1 = -0.5*(1.293*0.5*1.5*mag**2)
+            self.forcewing = -0.5*(1.293*0.5*0.05*mag**2)
+            p.applyExternalForce(self.robot.robotId, -1, forceObj = [15,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
 
-
-            p.applyExternalForce(self.robot.robotId, -1, forceObj = [30,0,0], posObj = [0, 0, 0], flags = p.LINK_FRAME)
-            p.applyExternalForce(self.robot.robotId, -1, forceObj = direction*self.force, posObj = [0, 0, 0], flags = p.LINK_FRAME)
-
+            for i in range (12):
+                p.applyExternalForce(self.robot.robotId, i, forceObj = direction*self.force1, posObj = [0, 0, 0], flags = p.LINK_FRAME)
+            for i in range(9, 12):
+                 p.applyExternalForce(self.robot.robotId, i, forceObj = direction*self.forcewing, posObj = [0, 0, 0], flags = p.LINK_FRAME)               
 
             #step 57
             self.robot.Sense(i)

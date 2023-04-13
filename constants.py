@@ -13,7 +13,7 @@ f_phaseOffset = 0
 size = 1000;
 
 #maxforce
-maxForce = 400;
+maxForce = 200;
 
 #timesleep
 timeSleep = 1/240;
