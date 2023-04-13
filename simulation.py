@@ -70,7 +70,7 @@ class SIMULATION:
             self.force = -0.5*(1.293*0.5*1.5*mag**2)
 
 
-            #p.applyExternalForce(self.robot.robotId, -1, forceObj = [100,0,0], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+            p.applyExternalForce(self.robot.robotId, -1, forceObj = [30,0,0], posObj = [0, 0, 0], flags = p.LINK_FRAME)
             p.applyExternalForce(self.robot.robotId, -1, forceObj = direction*self.force, posObj = [0, 0, 0], flags = p.LINK_FRAME)
 
 
