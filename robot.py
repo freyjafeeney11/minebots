@@ -1,4 +1,5 @@
 from motor import MOTOR
+from pyrosim.neuron  import NEURON
 from sensor import SENSOR
 from world import WORLD
 from cmath import pi
@@ -26,9 +27,14 @@ class ROBOT:
             self.sensors[linkName] = SENSOR(linkName)
 
     def Sense(self, t):
+        self.touchValues = 0
         # backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
         for sensor in self.sensors.values():
             sensor.Get_Value(t)
+            # if sensor.linkName == 'BackLegLow':
+            #     print(sensor.linkName)
+            #     if(sensor.Get_Value(t)):
+            #         self.touchValues += sensor.Get_Value(t)
 
     def Think(self):
         self.nn.Update()
@@ -50,11 +56,14 @@ class ROBOT:
                 #print(neuronName, self.jointName, self.desiredAngle)
 
     def Get_Fitness(self):
+
         #print("here now")
         self.basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
         self.basePosition = self.basePositionAndOrientation[0]
+        self.xPosition = self.basePosition[0]
         self.zPosition = self.basePosition[2]
 
+        self.total = self.xPosition + self.zPosition
         #for sensor in self.sensors.values():
             #sensor.Get_Value(t)
             #numpy.append(self.array, sensor.Get_Value(time))
@@ -62,7 +71,7 @@ class ROBOT:
 
         #write coor to file
         f = open("tmp" + str(self.solutionID) + ".txt", "w")
-        f.write(str(self.zPosition))
+        f.write(str(self.total))
         f.close()
         os.system("mv tmp" + str(self.solutionID) + ".txt fitness" + str(self.solutionID) + ".txt")
         #return numpy.mean(self.array)

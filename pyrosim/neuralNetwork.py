@@ -32,6 +32,7 @@ class NEURAL_NETWORK:
     
     def Update(self):
         for neuronName in self.neurons.keys():
+            #error is key error 1
             if self.neurons[neuronName].Is_Sensor_Neuron():
                 self.neurons[neuronName].Update_Sensor_Neuron()
             else:
