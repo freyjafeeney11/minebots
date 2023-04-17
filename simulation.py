@@ -62,19 +62,20 @@ class SIMULATION:
         for i in range(1000):
             p.stepSimulation()
 
-            v, _ = p.getBaseVelocity(self.robot.robotId)
-            mag = numpy.linalg.norm(v)
-            direction = [-v[i]/mag for i in range(3)]
-            direction = numpy.array(direction)
 
-            self.force1 = -0.5*(1.293*0.5*1.5*mag**2)
-            self.forcewing = -0.5*(1.293*0.5*0.05*mag**2)
-            p.applyExternalForce(self.robot.robotId, -1, forceObj = [15,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+            v = p.getBaseVelocity(self.robot.robotId)[0][0]
+            self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1.5*float(v))
+
+            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2*float(v))
+
+            self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(v))
+
+            p.applyExternalForce(self.robot.robotId, -1, forceObj = [45,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
 
             for i in range (12):
-                p.applyExternalForce(self.robot.robotId, i, forceObj = direction*self.force1, posObj = [0, 0, 0], flags = p.LINK_FRAME)
+                p.applyExternalForce(self.robot.robotId, i, p.getBaseVelocity(self.robot.robotId)[1], posObj = [0, 0, 0], flags = p.LINK_FRAME)
             for i in range(9, 12):
-                 p.applyExternalForce(self.robot.robotId, i, forceObj = direction*self.forcewing, posObj = [0, 0, 0], flags = p.LINK_FRAME)               
+                 p.applyExternalForce(self.robot.robotId, i, p.getBaseVelocity(self.robot.robotId)[1], posObj = [0, 0, 0], flags = p.LINK_FRAME)               
 
             #step 57
             self.robot.Sense(i)

@@ -21,12 +21,16 @@ timeSleep = 1/240;
 #gravity
 gravity = -9.8;
 
-populationSize = 10
+populationSize = 3
 
-numberOfGenerations = 10
+numberOfGenerations = 3
 
 numSensorNeurons = 13
 
 motorJointRange = 0.3
 
 numMotorNeurons = 12
+
+fluidDensity = 1.293
+
+dragCoefficient = 0.5
