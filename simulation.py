@@ -64,18 +64,26 @@ class SIMULATION:
 
 
             v = p.getBaseVelocity(self.robot.robotId)[0][0]
-            self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1.5*float(v))
+            speed_x = p.getBaseVelocity(self.robot.robotId)[0][0]
 
-            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2*float(v))
+            self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1 *float(speed_x))
 
-            self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(v))
+            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2.5*float(speed_x))
 
-            p.applyExternalForce(self.robot.robotId, -1, forceObj = [45,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+            self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(speed_x))
 
-            for i in range (12):
-                p.applyExternalForce(self.robot.robotId, i, p.getBaseVelocity(self.robot.robotId)[1], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+            p.applyExternalForce(self.robot.robotId, -1, forceObj = [30,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+
+            #torso
+            p.applyExternalForce(self.robot.robotId, 0, forceObj = [0, 0, self.forceTorso], posObj = [0, 0, 0], flags = p.LINK_FRAME)
+
+            #legs
+            for i in range(1, 8):
+                p.applyExternalForce(self.robot.robotId, i, forceObj = [0, 0, self.forceWing], posObj = [0, 0, 0], flags = p.LINK_FRAME) 
+
+            #wings
             for i in range(9, 12):
-                 p.applyExternalForce(self.robot.robotId, i, p.getBaseVelocity(self.robot.robotId)[1], posObj = [0, 0, 0], flags = p.LINK_FRAME)               
+                 p.applyExternalForce(self.robot.robotId, i, forceObj = [0, 0, self.forceLegs], posObj = [0, 0, 0], flags = p.LINK_FRAME)               
 
             #step 57
             self.robot.Sense(i)
