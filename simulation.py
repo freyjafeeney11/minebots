@@ -68,7 +68,7 @@ class SIMULATION:
 
             self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1 *float(speed_x))
 
-            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2.5*float(speed_x))
+            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*1.5*float(speed_x))
 
             self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(speed_x))
 

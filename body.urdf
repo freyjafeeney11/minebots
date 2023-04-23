@@ -8,7 +8,7 @@
         <visual>
             <origin xyz="0 0 9" rpy="0 0 0"/>
             <geometry>
-                <box size="4 0.75 1" />
+                <box size="5 0.5 0.5" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -17,14 +17,14 @@
         <collision>
             <origin xyz="0 0 9" rpy="0 0 0"/>
             <geometry>
-                <box size="4 0.75 1" />
+                <box size="5 0.5 0.5" />
             </geometry>
         </collision>
     </link>
     <joint name="Torso_Head" type="revolute">
        <parent link="Torso"/>
        <child  link="Head"/>
-       <origin rpy="0 0 0" xyz="0 4 9" />
+       <origin rpy="0 0 0" xyz="-0.5 4 9" />
      <axis xyz="1 0 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
@@ -37,7 +37,7 @@
         <visual>
             <origin xyz="3 -4 0" rpy="0 0 0"/>
             <geometry>
-                <box size="1.5 1.5 1.5" />
+                <box size="1 1.5 1" />
             </geometry>
             <material name="Cyan">
                 <color rgba="0 1.0 1.0 1.0"/>
@@ -46,7 +46,7 @@
         <collision>
             <origin xyz="3 -4 0" rpy="0 0 0"/>
             <geometry>
-                <box size="1.5 1.5 1.5" />
+                <box size="1 1.5 1" />
             </geometry>
         </collision>
     </link>
@@ -285,7 +285,7 @@
     <joint name="Torso_LeftFrontWing" type="revolute">
        <parent link="Torso"/>
        <child  link="LeftFrontWing"/>
-       <origin rpy="0 0 0" xyz="0.25 -1 9.5" />
+       <origin rpy="0 0 0" xyz="0.25 -1 9" />
      <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
@@ -314,7 +314,7 @@
     <joint name="Torso_RightFrontWing" type="revolute">
        <parent link="Torso"/>
        <child  link="RightFrontWing"/>
-       <origin rpy="0 0 0" xyz="0.25 0 9.5" />
+       <origin rpy="0 0 0" xyz="0.25 0 9" />
      <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
@@ -343,7 +343,7 @@
     <joint name="Torso_LeftBackWing" type="revolute">
        <parent link="Torso"/>
        <child  link="LeftBackWing"/>
-       <origin rpy="0 0 0" xyz="-0.25 -1 9.5" />
+       <origin rpy="0 0 0" xyz="-0.25 -1 9" />
      <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>
@@ -372,7 +372,7 @@
     <joint name="Torso_RightBackWing" type="revolute">
        <parent link="Torso"/>
        <child  link="RightBackWing"/>
-       <origin rpy="0 0 0" xyz="-0.25 0 9.5" />
+       <origin rpy="0 0 0" xyz="-0.25 0 9" />
      <axis xyz="0 1 0"/>
        <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
     </joint>

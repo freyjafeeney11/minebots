@@ -1,4 +1,5 @@
 from solution import SOLUTION
+import numpy as np
 import constants as c
 import copy
 import os
@@ -9,6 +10,7 @@ class PARALLEL_HILL_CLIMBER:
         os.system("rm brain*.nndf")
         os.system("rm fitness*.txt")
         self.nextAvailableID = 0
+        self.stored = np.zeros((c.populationSize, c.numberOfGenerations))
         self.parents = {}
         for i in range(0, c.populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
@@ -18,13 +20,14 @@ class PARALLEL_HILL_CLIMBER:
     def Evolve(self):
         self.Evaluate(self.parents)
         for currentGeneration in range(c.numberOfGenerations):
-            self.Evolve_For_One_Generation()
+            self.Evolve_For_One_Generation(currentGeneration)
+
     
-    def Evolve_For_One_Generation(self):
+    def Evolve_For_One_Generation(self, currentGeneration):
         self.Spawn()
         self.Mutate()
         self.Evaluate(self.children)
-        self.Select()
+        self.Select(currentGeneration)
         self.Print()
     
     def Spawn(self):
@@ -45,11 +48,12 @@ class PARALLEL_HILL_CLIMBER:
             c = self.children[i]
             c.Mutate()
 
-    def Select(self):
+    def Select(self, currentGeneration):
         for i in range(c.populationSize):
             #changed < for jump proj
             if ((self.children[i].fitness) > (self.parents[i].fitness)):
                 self.parents[i] = self.children[i]
+                self.stored[i, currentGeneration] = self.parents[i].fitness
 
     def Print(self):
         for i in self.parents.keys():
