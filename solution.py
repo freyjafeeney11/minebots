@@ -47,10 +47,10 @@ class SOLUTION:
         pyrosim.Start_URDF("body.urdf")
 
         #ADD 5 TO RAISE IT UP
-        pyrosim.Send_Cube(name="Torso", pos=[0,0,9] , size=[5,.5,.5], mass = 3)
+        pyrosim.Send_Cube(name="Torso", pos=[0,0,9] , size=[5,.5,.5], mass = 4)
 
         pyrosim.Send_Joint( name = "Torso_Head" , parent= "Torso" , child = "Head" , type = "revolute", position = [-0.5,4,9], jointAxis = "1 0 0")
-        pyrosim.Send_Cube(name="Head", pos=[3,-4,0] , size=[1,1.5,1], mass = 1)
+        pyrosim.Send_Cube(name="Head", pos=[3,-4,0] , size=[1,1.5,1], mass = 0.25)
 
 
         pyrosim.Send_Joint( name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" , type = "revolute", position = [0,-0.5,9], jointAxis = "1 0 0")
