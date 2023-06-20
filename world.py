@@ -9,5 +9,5 @@ import constants as c
 class WORLD:
     def __init__(self):
         self.planeId = p.loadURDF("plane.urdf")
-        self.platform = p.loadURDF("platform.urdf")
+        #self.platform = p.loadURDF("platform.urdf")
         p.loadSDF("world.sdf")

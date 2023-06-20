@@ -61,9 +61,9 @@ class ROBOT:
         self.basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
         self.basePosition = self.basePositionAndOrientation[0]
         self.xPosition = self.basePosition[0]
-        self.zPosition = self.basePosition[2]
+        #self.zPosition = self.basePosition[2]
 
-        self.total = self.xPosition + self.zPosition
+        self.total = self.xPosition
         #for sensor in self.sensors.values():
             #sensor.Get_Value(t)
             #numpy.append(self.array, sensor.Get_Value(time))

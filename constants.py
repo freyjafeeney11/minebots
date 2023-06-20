@@ -21,15 +21,15 @@ timeSleep = 1/240;
 #gravity
 gravity = -9.8;
 
-populationSize = 5
+populationSize = 2
 
-numberOfGenerations = 5
+numberOfGenerations = 2
 
-numSensorNeurons = 13
+numSensorNeurons = 10
 
 motorJointRange = 0.3
 
-numMotorNeurons = 12
+numMotorNeurons = 9
 
 fluidDensity = 1.293
 
