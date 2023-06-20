@@ -10,22 +10,6 @@ MotionThreadFunc thread started
 b3Printf: b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
 
 b3Printf: expected a world element, continuing without it.
-Traceback (most recent call last):
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulate.py", line 15, in <module>
-    simulation.Run()
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 89, in Run
-    self.robot.Sense(i)
-  File "/Users/freyjafeeney1/Thesis Research/minebots/robot.py", line 33, in Sense
-    sensor.Get_Value(t)
-  File "/Users/freyjafeeney1/Thesis Research/minebots/sensor.py", line 18, in Get_Value
-    self.values[time] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
-  File "/Users/freyjafeeney1/Thesis Research/minebots/pyrosim/pyrosim.py", line 53, in Get_Touch_Sensor_Value_For_Link
-    for pt in pts:
-TypeError: 'NoneType' object is not iterable
-Exception ignored in: <function SIMULATION.__del__ at 0x7fc74b0b3d30>
-Traceback (most recent call last):
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 98, in __del__
-pybullet.error: Not connected to physics server.
 numActiveThreads = 0
 stopping threads
 Thread with taskId 0 exiting
@@ -34,3 +18,19 @@ destroy semaphore
 semaphore destroyed
 destroy main semaphore
 main semaphore destroyed
+Traceback (most recent call last):
+  File "/Users/freyjafeeney1/Thesis Research/minebots/simulate.py", line 15, in <module>
+    simulation.Run()
+  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 91, in Run
+    self.robot.Act()
+  File "/Users/freyjafeeney1/Thesis Research/minebots/robot.py", line 55, in Act
+    self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
+  File "/Users/freyjafeeney1/Thesis Research/minebots/motor.py", line 28, in Set_Value
+    pyrosim.Set_Motor_For_Joint(
+  File "/Users/freyjafeeney1/Thesis Research/minebots/pyrosim/pyrosim.py", line 158, in Set_Motor_For_Joint
+    p.setJointMotorControl2(
+pybullet.error: Not connected to physics server.
+Exception ignored in: <function SIMULATION.__del__ at 0x7f88f20b3d30>
+Traceback (most recent call last):
+  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 98, in __del__
+pybullet.error: Not connected to physics server.
