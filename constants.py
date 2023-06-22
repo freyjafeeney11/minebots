@@ -13,7 +13,7 @@ f_phaseOffset = 0
 size = 1000;
 
 #maxforce
-maxForce = 200;
+maxForce = 100;
 
 #timesleep
 timeSleep = 1/240;
@@ -25,11 +25,11 @@ populationSize = 1
 
 numberOfGenerations = 1
 
-numSensorNeurons = 12
+numSensorNeurons = 13
 
-motorJointRange = 0.3
+motorJointRange = 0.8
 
-numMotorNeurons = 11
+numMotorNeurons = 12
 
 fluidDensity = 1.293
 
