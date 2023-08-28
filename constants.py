@@ -13,7 +13,7 @@ f_phaseOffset = 0
 size = 1000;
 
 #maxforce
-maxForce = 100;
+maxForce =200;
 
 #timesleep
 timeSleep = 1/240;
@@ -21,13 +21,13 @@ timeSleep = 1/240;
 #gravity
 gravity = -9.8;
 
-populationSize = 1
+populationSize = 15
 
-numberOfGenerations = 1
+numberOfGenerations = 15
 
 numSensorNeurons = 13
 
-motorJointRange = 0.8
+motorJointRange = 0.7
 
 numMotorNeurons = 12
 

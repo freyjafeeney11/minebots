@@ -10,24 +10,6 @@ MotionThreadFunc thread started
 b3Printf: b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
 
 b3Printf: expected a world element, continuing without it.
-Traceback (most recent call last):
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulate.py", line 15, in <module>
-    simulation.Run()
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 90, in Run
-    self.robot.Think()
-  File "/Users/freyjafeeney1/Thesis Research/minebots/robot.py", line 40, in Think
-    self.nn.Update()
-  File "/Users/freyjafeeney1/Thesis Research/minebots/pyrosim/neuralNetwork.py", line 37, in Update
-    self.neurons[neuronName].Update_Sensor_Neuron()
-  File "/Users/freyjafeeney1/Thesis Research/minebots/pyrosim/neuron.py", line 73, in Update_Sensor_Neuron
-    self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
-  File "/Users/freyjafeeney1/Thesis Research/minebots/pyrosim/pyrosim.py", line 53, in Get_Touch_Sensor_Value_For_Link
-    for pt in pts:
-TypeError: 'NoneType' object is not iterable
-Exception ignored in: <function SIMULATION.__del__ at 0x7fc6715a2d30>
-Traceback (most recent call last):
-  File "/Users/freyjafeeney1/Thesis Research/minebots/simulation.py", line 98, in __del__
-pybullet.error: Not connected to physics server.
 numActiveThreads = 0
 stopping threads
 Thread with taskId 0 exiting

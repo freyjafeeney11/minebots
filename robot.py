@@ -15,6 +15,12 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class ROBOT:
     def __init__(self, solutionID):
+        #adding this to try total distance travelled instead of distance from origin
+        self.total_dist = 0.0
+        self.ZPrev = 0.0
+        self.YPrev = 0.0
+        self.XPrev = 0.0
+
         self.solutionID = solutionID
         self.robotId = p.loadURDF("body.urdf");
         self.nn = NEURAL_NETWORK("brain" + str(solutionID) + ".nndf")
@@ -61,13 +67,24 @@ class ROBOT:
         self.basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
         self.basePosition = self.basePositionAndOrientation[0]
         self.xPosition = self.basePosition[0]
-        #self.zPosition = self.basePosition[2]
+        self.yPosition = self.basePosition[1]
+        self.zPosition = self.basePosition[2]
 
-        self.total = self.xPosition
-        #for sensor in self.sensors.values():
-            #sensor.Get_Value(t)
-            #numpy.append(self.array, sensor.Get_Value(time))
 
+        # #adding this for distance calc
+        # self.diffZ = self.zPosition - self.ZPrev
+        # self.diffY = self.yPosition - self.YPrev
+        # self.diffX = self.xPosition - self.XPrev
+
+        # ##edit this for the axis you want to check
+        # self.total_dist += (abs(self.diffX * 0.5) + (-abs(self.diffZ * 0.5)))
+        ## --- ##
+
+        self.total =  (self.zPosition * 0.8) + (self.xPosition * 0.2)
+
+        # self.ZPrev = self.zPosition
+        # self.YPrev = self.yPosition
+        # self.XPrev = self.xPosition
 
         #write coor to file
         f = open("tmp" + str(self.solutionID) + ".txt", "w")
