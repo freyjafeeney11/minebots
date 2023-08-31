@@ -13,13 +13,13 @@ f_phaseOffset = 0
 size = 1000;
 
 #maxforce
-maxForce =100;
+maxForce = 100;
 
 #timesleep
 timeSleep = 1/240;
 
 #gravity
-gravity = -9.8;
+gravity = -12.8;
 
 populationSize = 15
 
