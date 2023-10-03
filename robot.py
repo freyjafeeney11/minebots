@@ -64,11 +64,12 @@ class ROBOT:
     def Get_Fitness(self, changeJointRange):
 
         #try getting joint range here
-        self.jointManip = p.getJointInfo(self.robotId, 0)
-        self.jointUpperLimit = self.jointManip[9]
-        self.moddedUpperLimit = self.jointUpperLimit + changeJointRange;
+        #self.jointManip = p.getJointInfo(self.robotId, 0)
+        #self.jointUpperLimit = self.jointManip[9]
+        #self.moddedUpperLimit = self.jointUpperLimit + changeJointRange;
 
-        p.changeDynamics(self.robotId, 0, jointUpperLimit=self.moddedUpperLimit)
+        #this was to force joint range change
+        #p.changeDynamics(self.robotId, 0, jointUpperLimit=self.moddedUpperLimit)
 
         #print("here now")
         self.basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
@@ -87,7 +88,7 @@ class ROBOT:
         # self.total_dist += (abs(self.diffX * 0.5) + (-abs(self.diffZ * 0.5)))
         ## --- ##
 
-        self.total = (self.zPosition * 0.4) + (self.xPosition * 0.15) + (-self.xPosition * 0.15) + (self.moddedUpperLimit * 0.3)
+        self.total = self.xPosition
 
         # self.ZPrev = self.zPosition
         # self.YPrev = self.yPosition

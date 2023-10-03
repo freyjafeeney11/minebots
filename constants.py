@@ -21,9 +21,9 @@ timeSleep = 1/240;
 #gravity
 gravity = -12.8;
 
-populationSize = 15
+populationSize = 5
 
-numberOfGenerations = 15
+numberOfGenerations = 1
 
 numSensorNeurons = 13
 

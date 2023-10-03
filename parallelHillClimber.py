@@ -49,7 +49,7 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self, currentGeneration):
         for i in range(c.populationSize):
-            #changed < for jump proj
+            #maximum
             if ((self.children[i].fitness) > (self.parents[i].fitness)):
                 self.parents[i] = self.children[i]
                 self.stored[i, currentGeneration] = self.parents[i].fitness
@@ -61,7 +61,7 @@ class PARALLEL_HILL_CLIMBER:
             print("  \n")
 
     def Show_Best(self):
-        #changed here too
+        #maximum
         minval = -1000;
         for i in self.parents.keys():
             if self.parents[i].fitness > minval:
