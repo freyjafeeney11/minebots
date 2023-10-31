@@ -21,9 +21,9 @@ timeSleep = 1/240;
 #gravity
 gravity = -9.8;
 
-populationSize = 5
+populationSize = 1
 
-numberOfGenerations = 1
+numberOfGenerations = 5
 
 numSensorNeurons = 16
 
@@ -33,7 +33,7 @@ changeJointRange = 0.1
 
 numMotorNeurons = 15
 
-numHiddenNeurons = 15
+numHiddenNeurons = 16
 
 fluidDensity = 1.293
 
