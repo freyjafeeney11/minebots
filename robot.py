@@ -61,7 +61,7 @@ class ROBOT:
                 self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
                 #print(neuronName, self.jointName, self.desiredAngle)
 
-    def Get_Fitness(self, changeJointRange):
+    def Get_Fitness(self, jointRange, maxForce):
 
         #try getting joint range here
         #self.jointManip = p.getJointInfo(self.robotId, 0)
@@ -78,17 +78,10 @@ class ROBOT:
         self.yPosition = self.basePosition[1]
         self.zPosition = self.basePosition[2]
 
+        z_position_of_head = p.getJointInfo(self.robotId, 1)
+        z_position_of_head = z_position_of_head[13][2]
 
-        # #adding this for distance calc
-        # self.diffZ = self.zPosition - self.ZPrev
-        # self.diffY = self.yPosition - self.YPrev
-        # self.diffX = self.xPosition - self.XPrev
-
-        # ##edit this for the axis you want to check
-        # self.total_dist += (abs(self.diffX * 0.5) + (-abs(self.diffZ * 0.5)))
-        ## --- ##
-
-        self.total = self.xPosition
+        self.total = (self.zPosition * 0.6) + (self.xPosition * 0.4) + (jointRange * 3) + (z_position_of_head * 0.3)
 
         # self.ZPrev = self.zPosition
         # self.YPrev = self.yPosition
