@@ -92,7 +92,7 @@ class SIMULATION:
             #time.sleep(1/200)
 
     def Get_Fitness(self, joint, force):
-        self.robot.Get_Fitness(c.changeJointRange, c.maxForce)
+        self.robot.Get_Fitness(c.motorJointRange, c.maxForce)
 
     def __del__(self):
         p.disconnect()

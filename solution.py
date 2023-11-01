@@ -14,6 +14,7 @@ class SOLUTION:
         self.weights2 = self.weights2 * 2 - 1
 
 
+
     #split into two fuctions evaluate
     def Start_Simulation(self, directOrGUI):
         self.Create_World()
@@ -103,6 +104,7 @@ class SOLUTION:
         pyrosim.Send_Sensor_Neuron(name = 13 , linkName = "ThighLeft")
         pyrosim.Send_Sensor_Neuron(name = 14 , linkName = "ThighRight")
         pyrosim.Send_Sensor_Neuron( name = 15 , linkName = "TorsoSensor")
+
         pyrosim.Send_Hidden_Neuron( name = 16 )
         pyrosim.Send_Hidden_Neuron( name = 17 )
         pyrosim.Send_Hidden_Neuron( name = 18 )
@@ -119,6 +121,7 @@ class SOLUTION:
         pyrosim.Send_Hidden_Neuron( name = 29 )
         pyrosim.Send_Hidden_Neuron( name = 30 )
         pyrosim.Send_Hidden_Neuron( name = 31 )
+
         pyrosim.Send_Motor_Neuron( name = 32, jointName = "Neck_Head")
         pyrosim.Send_Motor_Neuron( name = 33 , jointName = "Torso_Neck")
         pyrosim.Send_Motor_Neuron( name = 34 , jointName = "Thigh_BackLeg")
@@ -141,9 +144,9 @@ class SOLUTION:
                 pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = (currentColumn+c.numSensorNeurons) , weight = self.weights[currentRow][currentColumn])
         
         
-        for currentRow in range(0, c.numHiddenNeurons):
-           for currentColumn in range(0, c.numMotorNeurons):
-                pyrosim.Send_Synapse( sourceNeuronName = currentRow , targetNeuronName = (currentColumn+c.numHiddenNeurons) , weight = self.weights2[currentRow][currentColumn])
+        for hidden in range(0, c.numHiddenNeurons):
+           for motor in range(0, c.numMotorNeurons):
+                pyrosim.Send_Synapse( sourceNeuronName = (hidden + c.numSensorNeurons) , targetNeuronName = (motor + c.numHiddenNeurons + c.numSensorNeurons) , weight = self.weights2[hidden][motor])
         # end 
         #exit()
         pyrosim.End()

@@ -72,7 +72,7 @@ class ROBOT:
         z_position_of_head = p.getJointInfo(self.robotId, 1)
         z_position_of_head = z_position_of_head[13][2]
 
-        self.total = (self.zPosition * 0.5) + (self.xPosition * 0.5)
+        self.total = (z_position_of_head * 0.8) + (self.zPosition * 0.4) + (self.xPosition * 0.5) + (-jointRange * 0.01) + (maxForce * 0.01)
 
         # self.ZPrev = self.zPosition
         # self.YPrev = self.yPosition

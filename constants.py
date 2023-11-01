@@ -16,20 +16,18 @@ size = 1000;
 maxForce = 200;
 
 #timesleep
-timeSleep = 1/240;
+timeSleep = 1/140;
 
 #gravity
 gravity = -9.8;
 
-populationSize = 1
+populationSize = 10
 
-numberOfGenerations = 5
+numberOfGenerations = 10
 
 numSensorNeurons = 16
 
-motorJointRange = 0.9
-
-changeJointRange = 0.1
+motorJointRange = 0.6
 
 numMotorNeurons = 15
 
