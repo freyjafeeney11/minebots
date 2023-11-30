@@ -69,10 +69,34 @@ class ROBOT:
         self.yPosition = self.basePosition[1]
         self.zPosition = self.basePosition[2]
 
-        z_position_of_head = p.getJointInfo(self.robotId, 1)
-        z_position_of_head = z_position_of_head[13][2]
+        position_of_head = p.getLinkState(self.robotId, 1, computeLinkVelocity=1)
+        po = p.getJointInfo(self.robotId, 1)
+        z_position_of_head = position_of_head[0][2]
+        # print("HERE: " + str(po))
 
-        self.total = (z_position_of_head * 0.8) + (self.zPosition * 0.4) + (self.xPosition * 0.5) + (-jointRange * 0.01) + (maxForce * 0.01)
+        lying_down = p.getLinkState(self.robotId, 14, computeLinkVelocity=1)
+        # -1 means touching
+        lying_down = lying_down[0][2]
+
+        # emotion = c.emotion
+
+        # if emotion == 1:
+        #     self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (-jointRange * 0.05) + (maxForce * 0.9)
+        # if emotion == "sad":
+        #     self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (-jointRange * 0.05) + (maxForce * 0.9)
+        # if emotion == "lazy":
+        #     self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (-jointRange * 0.05) + (maxForce * 0.9)
+        # else:
+        #     print("didnt go through. emotion is: " + str(emotion))
+        #     exit()
+
+        # got the joint range to change and force
+        joint_change = sum(max(0, abs(abs(self.nn.Get_Value_Of(neuronName) * c.motorJointRange) - jointRange)) for neuronName in self.nn.Get_Neuron_Names() if self.nn.Is_Motor_Neuron(neuronName))
+        force_change = sum(max(0, abs(abs(self.nn.Get_Value_Of(neuronName) * c.maxForce) - maxForce)) for neuronName in self.nn.Get_Neuron_Names() if self.nn.Is_Motor_Neuron(neuronName))
+        
+        # sad
+        self.total = -(z_position_of_head * 0.8) + (self.xPosition * 0.3) + (self.zPosition * 0.05)  + (-force_change * 0.3)
+        print(z_position_of_head)
 
         # self.ZPrev = self.zPosition
         # self.YPrev = self.yPosition

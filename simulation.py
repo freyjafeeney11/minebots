@@ -60,17 +60,19 @@ class SIMULATION:
 
     def Run(self):
         for i in range(1000):
+
             p.stepSimulation()
+
 
 
             v = p.getBaseVelocity(self.robot.robotId)[0][0]
             speed_x = p.getBaseVelocity(self.robot.robotId)[0][0]
 
-            self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1 *float(speed_x))
+            # self.forceTorso = -0.5*(c.fluidDensity * c.dragCoefficient * 1 *float(speed_x))
 
-            self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2.5*float(speed_x))
+            # self.forceWing = -0.5*(c.fluidDensity * c.dragCoefficient*2.5*float(speed_x))
 
-            self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(speed_x))
+            # self.forceLegs = -0.5*(c.fluidDensity * c.dragCoefficient*0.2*float(speed_x))
 
             #p.applyExternalForce(self.robot.robotId, -1, forceObj = [30,0,20], posObj = [0, 0, 0], flags = p.LINK_FRAME)
 
@@ -91,7 +93,7 @@ class SIMULATION:
             self.robot.Act()
             #time.sleep(1/200)
 
-    def Get_Fitness(self, joint, force):
+    def Get_Fitness(self, motor, force):
         self.robot.Get_Fitness(c.motorJointRange, c.maxForce)
 
     def __del__(self):

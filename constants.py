@@ -12,8 +12,10 @@ f_phaseOffset = 0
 #numpy constant
 size = 1000;
 
+changed = False
+
 #maxforce
-maxForce = 200;
+maxForce = 50;
 
 #timesleep
 timeSleep = 1/140;
@@ -21,17 +23,18 @@ timeSleep = 1/140;
 #gravity
 gravity = -9.8;
 
-populationSize = 10
+populationSize = 2
+numberOfGenerations = 20
 
-numberOfGenerations = 10
+motorJointRange = 0.7
 
-numSensorNeurons = 16
 
-motorJointRange = 0.6
+emotion = 1
 
-numMotorNeurons = 15
-
-numHiddenNeurons = 16
+# 47 total in network
+numSensorNeurons = 17
+numMotorNeurons = 16
+numHiddenNeurons = 17
 
 fluidDensity = 1.293
 

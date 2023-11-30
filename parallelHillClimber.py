@@ -21,13 +21,25 @@ class PARALLEL_HILL_CLIMBER:
         self.Evaluate(self.parents)
         for currentGeneration in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation(currentGeneration)
+            # interactive
+            if currentGeneration % 5 == 0:
+                self.Prompt_User(currentGeneration)
+                # write guess to a file and generation number
     
     def Evolve_For_One_Generation(self, currentGeneration):
         self.Spawn()
         self.Mutate()
         self.Evaluate(self.children)
         self.Select(currentGeneration)
-        self.Print()
+        #self.Print()
+    
+    def Prompt_User(self, currentGeneration):
+       if currentGeneration % 5 == 0:
+            self.Show_Best()
+            guess = input(f"Generation {currentGeneration}, What emotion does the robot look like it is portraying?: ")
+            with open('user_guesses.txt', 'a') as file:
+                file.write(f"Generation {currentGeneration}, User guess - {guess}\n")
+
     
     def Spawn(self):
         self.children = {}
