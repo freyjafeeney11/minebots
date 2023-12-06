@@ -1,0 +1,3 @@
+Generation 0, User guess - sad
+Generation 5, User guess - ?
+Generation 0, User guess - lazy
