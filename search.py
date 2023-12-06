@@ -8,7 +8,7 @@ while (emotion != 'happy' and emotion != 'sad' and emotion!='lazy'):
     print("Please enter happy, emotion or lazy.")
     emotion = input("What emotion do you want to see? \n\t1. Happy\n\t2. Sad\n\t3. Lazy\n")
 
-with open("chosen_emotion.txt", "a") as file:
+with open("chosen_emotion.txt", "w") as file:
     file.write(emotion)
 
 phc =  PARALLEL_HILL_CLIMBER()

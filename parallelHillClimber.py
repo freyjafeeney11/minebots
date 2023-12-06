@@ -22,8 +22,8 @@ class PARALLEL_HILL_CLIMBER:
         for currentGeneration in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation(currentGeneration)
             # interactive
-            if currentGeneration % 5 == 0:
-                self.Prompt_User(currentGeneration)
+            #if currentGeneration % 5 == 0:
+                #self.Prompt_User(currentGeneration)
                 # write guess to a file and generation number
     
     def Evolve_For_One_Generation(self, currentGeneration):

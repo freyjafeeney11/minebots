@@ -85,13 +85,13 @@ class ROBOT:
             print(emotion)
         # happy
         if emotion == 'happy':
-            self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (-jointRange * 0.05) + (maxForce * 0.9)
+            self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (jointRange * 0.05) + (maxForce * 0.8)
         # sad
         if emotion == 'sad':
-            self.total = (self.xPosition * 0.4) + (-z_position_of_head * 0.9) + (self.zPosition * 0.3) + (-jointRange * 0.05) + (maxForce * 0.9)
+            self.total = (self.xPosition * 0.3) + (-z_position_of_head * 0.9) + (self.zPosition * 0.3) + (-jointRange * 0.05) + (-maxForce * 0.7)
         # lazy
         if emotion == 'lazy':
-            self.total = (-self.xPosition * 0.1) + (-z_position_of_head * 0.9) + (-self.zPosition * 0.5) + (-jointRange * 0.05) + (-maxForce * 0.9)
+            self.total = (-self.xPosition * 0.01) + (-z_position_of_head * 0.9) + (-self.zPosition * 0.5) + (-jointRange * 0.05) + (-maxForce * 0.9)
 
         # got the joint range to change and force
         joint_change = sum(max(0, abs(abs(self.nn.Get_Value_Of(neuronName) * c.motorJointRange) - jointRange)) for neuronName in self.nn.Get_Neuron_Names() if self.nn.Is_Motor_Neuron(neuronName))
