@@ -1,5 +1,9 @@
-pybullet build time: Oct 24 2023 10:18:47
-2023-12-06 16:45:14.086 Python[5681:144804] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+pybullet build time: Apr  4 2024 19:56:10
+2024-04-25 18:01:21.907 Python[62279:15283624] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+sh: ffmpeg: command not found
+consensus is: 100.0
+sad
+1.5178482800601039
 Version = 4.1 Metal - 88
 Vendor = Apple
 Renderer = Apple M2 Pro
@@ -19,19 +23,3 @@ destroy semaphore
 semaphore destroyed
 destroy main semaphore
 main semaphore destroyed
-Traceback (most recent call last):
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/simulate.py", line 16, in <module>
-    simulation.Run()
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/simulation.py", line 93, in Run
-    self.robot.Act()
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/robot.py", line 61, in Act
-    self.motors[bytes(self.jointName, 'ASCII')].Set_Value(self.desiredAngle, self.robotId)
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/motor.py", line 28, in Set_Value
-    pyrosim.Set_Motor_For_Joint(
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/pyrosim/pyrosim.py", line 158, in Set_Motor_For_Joint
-    p.setJointMotorControl2(
-pybullet.error: Not connected to physics server.
-Exception ignored in: <function SIMULATION.__del__ at 0x11ce8ccc0>
-Traceback (most recent call last):
-  File "/Users/freyjafeeney/Documents/Thesis Documents/Thesis Research/minebots/simulation.py", line 100, in __del__
-pybullet.error: Not connected to physics server.

@@ -3,10 +3,12 @@ import constants as c
 from parallelHillClimber import PARALLEL_HILL_CLIMBER
 import numpy as np 
 
-emotion = input("What emotion do you want to see? \n\t1. Happy\n\t2. Sad\n\t3. Lazy\n")
-while (emotion != 'happy' and emotion != 'sad' and emotion!='lazy'):
-    print("Please enter happy, emotion or lazy.")
-    emotion = input("What emotion do you want to see? \n\t1. Happy\n\t2. Sad\n\t3. Lazy\n")
+# this for testing sad, interactive part
+emotion = 'sad'
+# emotion = input("What emotion do you want to see? \n\t1. Happy\n\t2. Sad\n\t3. Lazy\n")
+# while (emotion != 'happy' and emotion != 'sad' and emotion!='lazy'):
+#     print("Please enter happy, emotion or lazy.")
+#     emotion = input("What emotion do you want to see? \n\t1. Happy\n\t2. Sad\n\t3. Lazy\n")
 
 with open("chosen_emotion.txt", "w") as file:
     file.write(emotion)

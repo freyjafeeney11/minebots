@@ -8,15 +8,28 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy as numpy
 import constants as c
+import os
+import subprocess
+import asyncio
+from twitchio.ext import commands
 
 class SIMULATION:
     def __init__(self, directOrGUI, solutionID):
         self.solutionID =  solutionID
         self.directOrGUI = directOrGUI
+
+        # Define the directory to save the video
+        videos_dir = os.path.join(os.getcwd(), "videos")
+        os.makedirs(videos_dir, exist_ok=True)  # Create the "videos" directory if it doesn't exist
+        
+        # Specify the full path to the video file within the "videos" directory
+        video_path = os.path.join(videos_dir, "simulation.mp4")
+
         if directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
+        
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
         #p.setWindVelocity(0, 0, 10)
@@ -92,9 +105,23 @@ class SIMULATION:
             self.robot.Think()
             self.robot.Act()
             #time.sleep(1/200)
+        ######################
+        # Stream the recorded video to Twitch
+        #self.stream_to_twitch()
+
+        # Delete the recorded video file
+        #os.remove("simulation.mp4")
 
     def Get_Fitness(self, motor, force):
         self.robot.Get_Fitness(c.motorJointRange, c.maxForce)
+
+    def stream_to_twitch(self):
+        async def start_stream():
+            bot = TwitchBot()
+            await bot.start()
+            await bot.start_stream('simulation.mp4')
+        
+        asyncio.run(start_stream())
 
     def __del__(self):
         p.disconnect()

@@ -23,8 +23,8 @@ timeSleep = 1/140;
 #gravity
 gravity = -9.8;
 
-populationSize = 2
-numberOfGenerations = 20
+populationSize = 3
+numberOfGenerations = 3
 
 motorJointRange = 0.7
 

@@ -80,23 +80,30 @@ class ROBOT:
 
         # emotion = c.emotion
 
+        # POLL CHAT HERE
+        with open("poll_chat.txt", "r") as twitch_pull:
+            consensus = float(twitch_pull.readline().strip())
+            print(f'consensus is: {str(consensus)}')
+
         with open("chosen_emotion.txt", "r") as file:
             emotion = file.readline().strip()
             print(emotion)
-        # happy
-        if emotion == 'happy':
-            self.total = (self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (jointRange * 0.05) + (maxForce * 0.8)
-        # sad
-        if emotion == 'sad':
-            self.total = (self.xPosition * 0.3) + (-z_position_of_head * 0.9) + (self.zPosition * 0.3) + (-jointRange * 0.05) + (-maxForce * 0.7)
-        # lazy
-        if emotion == 'lazy':
-            self.total = (-self.xPosition * 0.01) + (-z_position_of_head * 0.9) + (-self.zPosition * 0.5) + (-jointRange * 0.05) + (-maxForce * 0.9)
-
-        # got the joint range to change and force
+    
         joint_change = sum(max(0, abs(abs(self.nn.Get_Value_Of(neuronName) * c.motorJointRange) - jointRange)) for neuronName in self.nn.Get_Neuron_Names() if self.nn.Is_Motor_Neuron(neuronName))
         force_change = sum(max(0, abs(abs(self.nn.Get_Value_Of(neuronName) * c.maxForce) - maxForce)) for neuronName in self.nn.Get_Neuron_Names() if self.nn.Is_Motor_Neuron(neuronName))
-        
+       
+        # happy
+        if emotion == 'happy':
+            # scale by chat consensus
+            self.total = (consensus * 0.5) * ((self.xPosition * 0.6) + (z_position_of_head * 0.9) + (self.zPosition * 0.5) + (joint_change * 0.05) + (force_change * 0.8))
+        # sad
+        if emotion == 'sad':
+            self.total = (consensus * 0.5) * ((self.xPosition * 0.3) + (-z_position_of_head * 0.9) + (self.zPosition * 0.3) + (-joint_change * 0.05) + (-force_change * 0.7))
+        # lazy
+        if emotion == 'lazy':
+            self.total = (consensus * 0.5) * ((-self.xPosition * 0.01) + (-z_position_of_head * 0.9) + (-self.zPosition * 0.5) + (-joint_change * 0.05) + (-force_change * 0.9))
+
+        # got the joint range to change and force 
         # sad
         print(z_position_of_head)
 
